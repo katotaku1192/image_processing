@@ -7,14 +7,20 @@
 class RedDepth{
     public:
         int u, v;
+        float x, y, z;
+        // set camera internal param
+        float fx = 528.89;          // focal length
+        float fy = 528.52;
+        float cx = 662.885;         // principal points
+        float cy = 360.4255;
 
         ros::NodeHandle nh;
         ros::Subscriber subCenter;  //  = nh.subscribe("/red_center", 10, centerCallback);
         ros::Subscriber subDepth;   // = nh.subscribe("/zed2/zed_node/depth/depth_registered", 10, depthCallback);
     
+        RedDepth();
         void depthCallback(const sensor_msgs::Image::ConstPtr& msg);
         void centerCallback(const std_msgs::UInt16MultiArray::ConstPtr& msg);
-        RedDepth();
 };
 
 
@@ -25,7 +31,7 @@ RedDepth::RedDepth(){
 
 
 void RedDepth::centerCallback(const std_msgs::UInt16MultiArray::ConstPtr& msg) {
-    // Get red center of gravity from node "color_extract"
+    // Get marker center of gravity from node "color_extract"
     u = msg->data[0];
     v = msg->data[1];
 
@@ -33,11 +39,10 @@ void RedDepth::centerCallback(const std_msgs::UInt16MultiArray::ConstPtr& msg) {
     if(u && v){
         //ROS_INFO("Marker Point: (%d, %d)", u, v);
     }
-    // If not find center
+    // If not find marker
     else{
         ROS_INFO("Marker is NOT found!");
     }
-    
 }
 
 
@@ -46,11 +51,20 @@ void RedDepth::depthCallback(const sensor_msgs::Image::ConstPtr& msg) {
     // Get a pointer to the depth values casting the data
     // pointer to floating point
     float* depths = (float*)(&msg->data[0]);
+
     // Linear index of the center pixel
     int centerIdx = u + msg->width * v;
+
+    // Get marker XYZ coordinate
+    z = depths[centerIdx];
+    x = z / fx * (u - cx);
+    y = z / fy * (v - cy);
+
     if(u && v){
-        // Output the measure
+        // Output the depth
         ROS_INFO("Marker Depth : %g m", depths[centerIdx]);
+        // Output the XYZ coordinate
+        ROS_INFO("Marker Coordinate : (%g, %g, %g)", x, y, z);
     }
     
 }
