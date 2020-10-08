@@ -62,9 +62,9 @@ void RedDepth::depthCallback(const sensor_msgs::Image::ConstPtr& msg) {
 
     if(u && v){
         // Output the depth
-        ROS_INFO("Marker Depth : %g m", depths[centerIdx]);
+        //ROS_INFO("Marker Depth : %g m", depths[centerIdx]);
         // Output the XYZ coordinate
-        ROS_INFO("Marker Coordinate : (%g, %g, %g)", x, y, z);
+        ROS_INFO("Marker : (x: %g, y: %g, z: %g)", x, y, z);
     }
     
 }
@@ -82,7 +82,5 @@ int main(int argc, char** argv) {
 		ros::spinOnce();
 		loop_rate.sleep();
 	}
-
-
     return 0;
 }
