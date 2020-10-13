@@ -15,7 +15,7 @@ class ColorExtract(object):
         self._red_pub = rospy.Publisher('red_image', Image, queue_size=1)
         self._detect_pub = rospy.Publisher('detect_image', Image, queue_size=1)
         self._center_pub = rospy.Publisher('red_center', UInt16MultiArray, queue_size=1)
-        self._image_sub = rospy.Subscriber('/zed2/zed_node/left/image_rect_color', Image, self.callback)
+        self._image_sub = rospy.Subscriber('/zed_node/left/image_rect_color', Image, self.callback)
         self._bridge = CvBridge()
 
 
