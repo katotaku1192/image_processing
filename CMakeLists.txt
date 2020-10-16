@@ -19,3 +19,6 @@ target_link_libraries(depth_red_marker  ${catkin_LIBRARIES})
 add_executable(coordinate_red_marker src/coordinate_red_marker.cpp)
 target_link_libraries(coordinate_red_marker  ${catkin_LIBRARIES})
 
+add_executable(coordinate_marker_camera2 src/coordinate_marker_camera2.cpp)
+target_link_libraries(coordinate_marker_camera2  ${catkin_LIBRARIES})
+
