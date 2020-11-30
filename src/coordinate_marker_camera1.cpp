@@ -12,10 +12,10 @@ class MarkerCoordinate{
         float cam_x, cam_y, cam_z;
         float X, Y, Z;
         // set camera internal param
-        float fx = 528.89;          // focal length
-        float fy = 528.52;
-        float cx = 662.885;         // principal points
-        float cy = 360.4255;
+        float fx = 526.905;          // focal length
+        float fy = 526.76;
+        float cx = 639.165;         // principal points
+        float cy = 365.0875;
 
         ros::NodeHandle nh;
         ros::Subscriber subCenter;
@@ -29,9 +29,9 @@ class MarkerCoordinate{
 
 
 MarkerCoordinate::MarkerCoordinate(){
-    subCenter = nh.subscribe("/robot2/camera2_red_center", 10, &MarkerCoordinate::centerCallback, this);
-	subDepth = nh.subscribe("/robot2/zed_nodelet/depth/depth_registered", 10, &MarkerCoordinate::coordinateCallback, this);
-    pubCoordinate = nh.advertise<geometry_msgs::Point>("/robot2/marker_coordinate", 1);
+    subCenter = nh.subscribe("/robot1/red_center", 10, &MarkerCoordinate::centerCallback, this);
+	subDepth = nh.subscribe("/robot1/zed_nodelet/depth/depth_registered", 10, &MarkerCoordinate::coordinateCallback, this);
+    pubCoordinate = nh.advertise<geometry_msgs::Point>("/robot1/marker_coordinate", 1);
 }
 
 
@@ -78,7 +78,7 @@ void MarkerCoordinate::coordinateCallback(const sensor_msgs::Image::ConstPtr& ms
         //ROS_INFO("Marker Depth : %g m", depths[centerIdx]);
 
         // Output the XYZ coordinate
-        ROS_INFO("Robot2 -> 1 : (x: %g, y: %g, z: %g)", X, Y, Z);
+        ROS_INFO("Robot1 -> 2 : (x: %g, y: %g, z: %g)", X, Y, Z);
 
         // Publish the XYZ coodinate
         point.x = X;
@@ -93,7 +93,7 @@ void MarkerCoordinate::coordinateCallback(const sensor_msgs::Image::ConstPtr& ms
 
 int main(int argc, char** argv) {
     
-    ros::init(argc, argv, "coordinate_marker_camera2");
+    ros::init(argc, argv, "coordinate_marker_camera1");
 
     MarkerCoordinate det_coordinate;
 

@@ -1,0 +1,11 @@
+<launch>
+    <group ns="robot1">
+        <node pkg="image_processing" type="detect_marker.py" name="detect_marker">
+            <remap from="red_image" to="/robot1/red_image"/>
+            <remap from="detect_image" to="/robot1/detect_image"/>
+            <remap from="red_center" to="/robot1/red_center"/>
+            <remap from="/zed_nodelet/left/image_rect_color" to="/robot1/zed_nodelet/left/image_rect_color"/>
+        </node>
+        <node pkg="image_processing" type="coordinate_marker_camera1" name="coordinate_marker_camera1"/>
+    </group>
+</launch>

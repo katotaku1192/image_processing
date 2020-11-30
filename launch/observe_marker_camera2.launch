@@ -1,6 +1,0 @@
-<launch>
-    <group ns="robot2">
-        <node pkg="image_processing" type="detect_marker_camera2.py" name="camera2_detect_marker"/>
-        <node pkg="image_processing" type="coordinate_marker_camera2" name="camera2_coordinate_marker"/>
-    </group>
-</launch>
