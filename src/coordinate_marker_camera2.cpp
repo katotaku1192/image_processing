@@ -29,7 +29,7 @@ class MarkerCoordinate{
 
 
 MarkerCoordinate::MarkerCoordinate(){
-    subCenter = nh.subscribe("/robot2/camera2_red_center", 10, &MarkerCoordinate::centerCallback, this);
+    subCenter = nh.subscribe("/robot2/red_center", 10, &MarkerCoordinate::centerCallback, this);
 	subDepth = nh.subscribe("/robot2/zed_nodelet/depth/depth_registered", 10, &MarkerCoordinate::coordinateCallback, this);
     pubCoordinate = nh.advertise<geometry_msgs::Point>("/robot2/marker_coordinate", 1);
 }

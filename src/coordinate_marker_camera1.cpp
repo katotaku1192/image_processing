@@ -29,7 +29,7 @@ class MarkerCoordinate{
 
 
 MarkerCoordinate::MarkerCoordinate(){
-    subCenter = nh.subscribe("/robot1/red_center", 10, &MarkerCoordinate::centerCallback, this);
+    subCenter = nh.subscribe("/robot1/ar_point", 10, &MarkerCoordinate::centerCallback, this);
 	subDepth = nh.subscribe("/robot1/zed_nodelet/depth/depth_registered", 10, &MarkerCoordinate::coordinateCallback, this);
     pubCoordinate = nh.advertise<geometry_msgs::Point>("/robot1/marker_coordinate", 1);
 }
@@ -78,7 +78,7 @@ void MarkerCoordinate::coordinateCallback(const sensor_msgs::Image::ConstPtr& ms
         //ROS_INFO("Marker Depth : %g m", depths[centerIdx]);
 
         // Output the XYZ coordinate
-        ROS_INFO("Robot1 -> 2 : (x: %g, y: %g, z: %g)", X, Y, Z);
+        ROS_INFO("1 -> 2 : (x: %g, y: %g, z: %g)", X, Y, Z);
 
         // Publish the XYZ coodinate
         point.x = X;
