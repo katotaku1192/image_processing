@@ -3,8 +3,10 @@
         <node pkg="image_processing" type="detect_aruco.py" name="detect_aruco">
             <remap from="detect_image" to="/robot1/detect_image"/>
             <remap from="ar_point" to="/robot1/ar_point"/>
-            <remap from="/zed_node/left/image_rect_gray" to="/robot1/zed_nodelet/left/image_rect_gray"/>
+            <remap from="/zed_node/left/image_rect_gray" to="/robot1/zed_node/left/image_rect_gray"/>
         </node>
-        <node pkg="image_processing" type="coordinate_marker_camera1" name="coordinate_marker_camera1"/>
+        <node pkg="image_processing" type="coordinate_marker_camera1" name="coordinate_marker_camera1">
+            <remap from="/robot1/zed_nodelet/depth/depth_registered" to="/robot1/zed_node/depth/depth_registered"/>
+        </node>
     </group>
 </launch>

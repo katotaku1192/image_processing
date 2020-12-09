@@ -68,7 +68,7 @@ void MarkerCoordinate::coordinateCallback(const sensor_msgs::Image::ConstPtr& ms
     // Transform to ROS coordinate system
     X = cam_z;
     Y = -cam_x;
-    Z = -cam_y;
+    Z = -cam_y - 0.084;  // marker point -> camera point
 
     // if marker is detected
     if(u && v){

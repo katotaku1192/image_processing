@@ -31,14 +31,15 @@ class ArucoExtract(object):
 
         ar_point = UInt16MultiArray()
 
+        # If find marker
         if corners:
-            cx, cy = corners[0][0][2][0], corners[0][0][2][1]
-            rx, ry = int(cx), int(cy)+10
+            rx = int((corners[0][0][0][0] + corners[0][0][2][0]) / 2 + corners[0][0][2][0] - corners[0][0][0][0])
+            ry = int((corners[0][0][0][1]+corners[0][0][2][1])/2)
             ar_point.data = [rx, ry]
 
             font = cv2.FONT_HERSHEY_PLAIN
-            cv2.circle(detect_image,(rx, ry), 4, (0, 255, 0), -1)
-            cv2.putText(detect_image, '('+str(rx)+', '+str(ry)+')', (rx, ry), font, 1, (0, 255, 0), 1, cv2.LINE_AA)
+            cv2.circle(detect_image,(rx, ry), 4, (0, 0, 255), -1)
+            cv2.putText(detect_image, '('+str(rx)+', '+str(ry)+')', (rx+5, ry), font, 1, (0, 0, 255), 1, cv2.LINE_AA)
 
         else:
             ar_point.data = [0, 0]

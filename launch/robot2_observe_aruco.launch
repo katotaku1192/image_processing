@@ -1,0 +1,12 @@
+<launch>
+    <group ns="robot2">
+        <node pkg="image_processing" type="detect_aruco.py" name="detect_aruco">
+            <remap from="detect_image" to="/robot2/detect_image"/>
+            <remap from="ar_point" to="/robot2/ar_point"/>
+            <remap from="/zed_node/left/image_rect_gray" to="/robot2/zed_node/left/image_rect_gray"/>
+        </node>
+        <node pkg="image_processing" type="coordinate_marker_camera2" name="coordinate_marker_camera2">
+            <remap from="/robot2/zed_nodelet/depth/depth_registered" to="/robot2/zed_node/depth/depth_registered"/>
+        </node>
+    </group>
+</launch>
