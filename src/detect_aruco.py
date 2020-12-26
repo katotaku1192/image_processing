@@ -33,7 +33,7 @@ class ArucoExtract(object):
 
         # If find marker
         if corners:
-            rx = int((corners[0][0][0][0] + corners[0][0][2][0]) / 2 + corners[0][0][2][0] - corners[0][0][0][0])
+            rx = int(corners[0][0][2][0] + (corners[0][0][2][0] - corners[0][0][0][0]) / 3)
             ry = int((corners[0][0][0][1]+corners[0][0][2][1])/2)
             ar_point.data = [rx, ry]
 
