@@ -1,0 +1,17 @@
+<launch>
+    <group ns="robot1">
+        <node pkg="image_processing" type="detect_aruco_stereo.py" name="detect_aruco_stereo">
+            <remap from="detect_image_left" to="/robot1/detect_image_left"/>
+            <remap from="detect_image_right" to="/robot1/detect_image_right"/>
+            <remap from="ar_point_left" to="/robot1/ar_point_left"/>
+            <remap from="ar_point_right" to="/robot1/ar_point_right"/>
+            <remap from="/zed_node/left/image_rect_gray" to="/robot1/zed_nodelet/left/image_rect_gray"/>
+            <remap from="/zed_node/right/image_rect_gray" to="/robot1/zed_nodelet/right/image_rect_gray"/>
+        </node>
+        <node pkg="image_processing" type="coordinate_marker_stereo_camera1" name="coordinate_marker_stereo_camera1">
+            <remap from="/ar_point_left" to="/robot1/ar_point_left"/>
+            <remap from="/ar_point_right" to="/robot1/ar_point_right"/>
+            <remap from="/marker_coordinate" to="/robot1/marker_coordinate"/>
+        </node>
+    </group>
+</launch>
