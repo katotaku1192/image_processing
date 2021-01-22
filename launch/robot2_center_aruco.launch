@@ -1,0 +1,17 @@
+<launch>
+    <group ns="robot2">
+        <node pkg="image_processing" type="detect_aruco_center.py" name="detect_aruco_center">
+            <remap from="detect_image_left" to="/robot2/detect_image_left"/>
+            <remap from="detect_image_right" to="/robot2/detect_image_right"/>
+            <remap from="ar_point_left" to="/robot2/ar_point_left"/>
+            <remap from="ar_point_right" to="/robot2/ar_point_right"/>
+            <remap from="/zed_node/left/image_rect_gray" to="/robot2/zed_nodelet/left/image_rect_gray"/>
+            <remap from="/zed_node/right/image_rect_gray" to="/robot2/zed_nodelet/right/image_rect_gray"/>
+        </node>
+        <node pkg="image_processing" type="coordinate_marker_center_camera2" name="coordinate_marker_center_camera2">
+            <remap from="/ar_point_left" to="/robot2/ar_point_left"/>
+            <remap from="/ar_point_right" to="/robot2/ar_point_right"/>
+            <remap from="/marker_coordinate" to="/robot2/marker_coordinate"/>
+        </node>
+    </group>
+</launch>
